@@ -77,9 +77,7 @@ getRightIndex = function (index, contextWords, textContent) {
     prevChar = textContent[index]
     index++
   }
-  console.log(index)
-  console.log(textContent.length - 1)
-  return index === textContent.length - 1 ? index : index - 1
+  return index === textContent.length - 1 ? index + 1 : index - 1
 }
 
 // Create an instance and run tests:
