@@ -42,10 +42,12 @@ class TextSearcher {
   // Returns an array of strings representing the words & context words found in the text file
   search(queryWord, contextWords) {
     const output = []
-    for (let index of this.hash[queryWord]) {
-      let leftIdx = getLeftIndex(index, contextWords, this.textContent)
-      let rightIdx = getRightIndex(index, contextWords, this.textContent)
-      output.push(this.textContent.slice(leftIdx, rightIdx).trim())
+    if (queryWord in this.hash) {
+      for (let index of this.hash[queryWord]) {
+        let leftIdx = getLeftIndex(index, contextWords, this.textContent)
+        let rightIdx = getRightIndex(index, contextWords, this.textContent)
+        output.push(this.textContent.slice(leftIdx, rightIdx).trim())
+      }
     }
     return output
   }
@@ -84,8 +86,10 @@ getRightIndex = function (index, contextWords, textContent) {
 
 const searcher = new TextSearcher('./files/short_excerpt.txt')
 // let results = searcher.search('undergo', 3)
-let results = searcher.search('naturalists', 3)
+// let results = searcher.search('naturalists', 3)
 // let results = searcher.search('will', 4)
 // let results = searcher.search('I', 3)
+// let results = searcher.search('i', 3)
+let results = searcher.search('ertgrthbrhb', 3)
 // let results = searcher.search('pre', 3)
 console.log(results)
