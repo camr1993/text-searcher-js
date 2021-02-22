@@ -60,20 +60,26 @@ getLeftIndex = function (index, contextWords, textContent) {
   let wordCounter = 0
   let prevChar = ''
   while (index > 0 && wordCounter <= contextWords) {
-    if (!/[\n\r\s]/.test(prevChar) && /[\n\r\s]/.test(textContent[index])) {
+    if (
+      /[a-zA-Z0-9']/.test(prevChar) &&
+      !/[a-zA-Z0-9']/.test(textContent[index])
+    ) {
       wordCounter++
     }
     prevChar = textContent[index]
     index--
   }
-  return index + 1
+  return index === 0 ? index : index + 1
 }
 // get the right index of the context words
 getRightIndex = function (index, contextWords, textContent) {
   let wordCounter = 0
   let prevChar = ''
   while (index < textContent.length - 1 && wordCounter <= contextWords) {
-    if (/[\n\r\s]/.test(prevChar) && !/[\n\r\s]/.test(textContent[index])) {
+    if (
+      /[a-zA-Z0-9']/.test(prevChar) &&
+      !/[a-zA-Z0-9']/.test(textContent[index])
+    ) {
       wordCounter++
     }
     prevChar = textContent[index]
